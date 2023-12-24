@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widget/add_note_bottom_sheet.dart';
 import 'widget/custom_search_icon.dart';
-import 'widget/note_item.dart';
 import 'widget/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
@@ -10,6 +10,21 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xff52ebd6),
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return const AddNoteBottomSheet();
+            },
+          );
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 18,
@@ -25,7 +40,9 @@ class NotesView extends StatelessWidget {
                 ),
               ),
               actions: const [
-                CustomSearchIcon(),
+                CustomSearchIcon(
+                  iconData: Icons.search,
+                ),
               ],
             ),
             const NotesListView(),
